@@ -6,6 +6,7 @@ driver = webdriver.Chrome(executable_path="C:\Program Files\Drivers_browsers\chr
 
 
 driver.get("enter URL address")
+driver.implicitly_wait(5) #waits for 5 seconds for all elements on the page to load
 name_field = driver.find_element_by_name("username") #finds an element for username
 print(name_field.is_displayed()) #returns True if the name is displayed, False otherwise
 print(name_field.is_enabled()) #returns True if the name is enabled, False otherwise

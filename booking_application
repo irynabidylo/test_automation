@@ -1,0 +1,75 @@
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+import time
+from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+driver = webdriver.Chrome(executable_path="C:\Program Files\Drivers_browsers\chromedriver.exe")
+driver.implicitly_wait(5) #waits for 5 seconds for a page to open
+
+driver.maximize_window()
+driver.get("https://www.booking.com")
+time.sleep(3)
+
+destination = driver.find_element_by_id("ss")
+destination.is_enabled() #returns True if the destination fiels is enabled
+driver.find_element_by_id("ss").send_keys("Rome") #insert destination - Rome
+time.sleep(2)
+
+#from 20 January 2021
+#to 5 February 2021
+
+from_dp = driver.find_element_by_xpath("//*[@id='frm']/div[1]/div[2]/div[1]/div[2]/div/div/div/div/span") #finds an element with dates
+from_dp.click()
+time.sleep(2)
+
+from_day = driver.find_element_by_xpath("//*[@id='frm']/div[1]/div[2]/div[2]/div/div/div[3]/div[2]/table/tbody/tr[4]/"
+                                        "td[4]/span/span") #finds and click From date - 20 January 2021
+from_day.click()
+time.sleep(2)
+
+change_month = driver.find_element_by_xpath("//*[@id='frm']/div[1]/div[2]/div[2]/div/div/div[2]") #changes month to February
+change_month.click()
+time.sleep(3)
+
+to_day = driver.find_element_by_xpath("//*[@id='frm']/div[1]/div[2]/div[2]/div/div/div[3]/div[2]/table/tbody/tr[1]/"
+                                      "td[6]/span/span") #finds and clicks From date - 5 February
+to_day.click()
+time.sleep(2)
+
+#2 adults (already a default) and 2 children to choose
+number_of_guests = driver.find_element_by_xpath("//*[@id='xp__guests__toggle']/span[2]")
+number_of_guests.click()
+time.sleep(2)
+
+number_of_children = driver.find_element_by_xpath("//*[@id='xp__guests__inputs-container']/div/div/div[2]/div/div[2]/"
+                                                  "button[2]/span")
+number_of_children.click()
+number_of_children.click()
+time.sleep(2)
+
+#children's age is 5 and 7
+children_age_1 = driver.find_element_by_xpath("//*[@id='xp__guests__inputs-container']/div/div/div[4]/select[1]") 
+children_age_1.click()
+
+drop_down_age = Select(driver.find_element_by_name("age"))
+drop_down_age.select_by_visible_text("5 years old") #changes first child's age
+
+children_age_2 = driver.find_element_by_xpath("//*[@id='xp__guests__inputs-container']/div/div/div[4]/select[2]")
+children_age_2.click()
+
+drop_down_age_2 = Select(driver.find_element_by_xpath("//*[@id='xp__guests__inputs-container']/div/div/div[4]/select[2]"))
+drop_down_age_2.select_by_visible_text("7 years old") #changes second child's age
+
+driver.find_element_by_xpath("//*[@id='frm']/div[1]/div[4]/div[2]/button").click() #clicking search button
+
+#explicit wait
+wait = WebDriverWait(driver, 10)
+
+#to choose "cad 78-156" checkbox
+checkbox = wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='filter_price']/div[2]/a[2]/label/div/span[1]")))
+checkbox.click()
+
+time.sleep(10)

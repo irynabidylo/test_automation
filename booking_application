@@ -69,6 +69,10 @@ driver.find_element_by_xpath("//*[@id='frm']/div[1]/div[4]/div[2]/button").click
 #explicit wait
 wait = WebDriverWait(driver, 10)
 
+#scroll down the page till the element is visible
+checkbox = driver.find_element_by_xpath("//*[@id='filter_price']/div[3]/a[2]/label/div/span")
+driver.execute_script("arguments[0].scrollIntoView();", checkbox)
+
 #to choose "cad 78-156" checkbox
 checkbox = wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='filter_price']/div[2]/a[2]/label/div/span[1]")))
 checkbox.click()

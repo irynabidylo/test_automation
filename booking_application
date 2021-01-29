@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver import ActionChains
 import time
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
@@ -46,8 +47,8 @@ time.sleep(2)
 
 number_of_children = driver.find_element_by_xpath("//*[@id='xp__guests__inputs-container']/div/div/div[2]/div/div[2]/"
                                                   "button[2]/span")
-number_of_children.click()
-number_of_children.click()
+action = ActionChains(driver)
+action.double_click(number_of_children).perform()
 time.sleep(2)
 
 #children's age is 5 and 7

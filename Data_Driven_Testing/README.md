@@ -1,1 +1,1 @@
-Readme
+File "EXcel_utils" contains main functions, file "Data_Driven_Testcase" contains all the steps to execute it and takes the information about email/password from Excel file "Login1.xlsx" - columns 1 and 2, and writes in the 3rd column Test results: Test Passed or Test Failed.

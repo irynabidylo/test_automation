@@ -12,44 +12,44 @@ driver.implicitly_wait(5) #waits for 5 seconds for a page to open
 
 driver.maximize_window()
 driver.get("https://www.booking.com")
-time.sleep(3)
+driver.implicitly_wait(3)
 
 destination = driver.find_element_by_id("ss")
 destination.is_enabled() #returns True if the destination fiels is enabled
 driver.find_element_by_id("ss").send_keys("Rome") #insert destination - Rome
-time.sleep(2)
+driver.implicitly_wait(3)
 
 #from 20 January 2021
 #to 5 February 2021
 
 from_dp = driver.find_element_by_xpath("//*[@id='frm']/div[1]/div[2]/div[1]/div[2]/div/div/div/div/span") #finds an element with dates
 from_dp.click()
-time.sleep(2)
+driver.implicitly_wait(3)
 
 from_day = driver.find_element_by_xpath("//*[@id='frm']/div[1]/div[2]/div[2]/div/div/div[3]/div[2]/table/tbody/tr[4]/"
                                         "td[4]/span/span") #finds and click From date - 20 January 2021
 from_day.click()
-time.sleep(2)
+driver.implicitly_wait(3)
 
 change_month = driver.find_element_by_xpath("//*[@id='frm']/div[1]/div[2]/div[2]/div/div/div[2]") #changes month to February
 change_month.click()
-time.sleep(3)
+driver.implicitly_wait(3)
 
 to_day = driver.find_element_by_xpath("//*[@id='frm']/div[1]/div[2]/div[2]/div/div/div[3]/div[2]/table/tbody/tr[1]/"
                                       "td[6]/span/span") #finds and clicks From date - 5 February
 to_day.click()
-time.sleep(2)
+driver.implicitly_wait(3)
 
 #2 adults (already a default) and 2 children to choose
 number_of_guests = driver.find_element_by_xpath("//*[@id='xp__guests__toggle']/span[2]")
 number_of_guests.click()
-time.sleep(2)
+driver.implicitly_wait(3)
 
 number_of_children = driver.find_element_by_xpath("//*[@id='xp__guests__inputs-container']/div/div/div[2]/div/div[2]/"
                                                   "button[2]/span")
 action = ActionChains(driver)
 action.double_click(number_of_children).perform()
-time.sleep(2)
+driver.implicitly_wait(3)
 
 #children's age is 5 and 7
 children_age_1 = driver.find_element_by_xpath("//*[@id='xp__guests__inputs-container']/div/div/div[4]/select[1]") 
@@ -80,4 +80,4 @@ driver.execute_script("arguments[0].scrollIntoView();", checkbox)
 checkbox = wait.until(EC.element_to_be_clickable((By.XPATH, "//*[@id='filter_price']/div[2]/a[2]/label/div/span[1]")))
 checkbox.click()
 
-time.sleep(10)
+driver.implicitly_wait(7)

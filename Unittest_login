@@ -20,6 +20,7 @@ class ItalkiTest(unittest.TestCase):
         self.driver.find_element_by_id("signinForm_password").send_keys("123456789aB")
         self.driver.find_element_by_class_name("ant-btn ant-btn-secondary ant-btn-block").click()
         self.assertEqual("Панель управления | italki", self.driver.title, "Titles don't match")
+        #"Titles don't match" - message which will be shown if test fails
 
     @classmethod
     def tearDownClass(cls): #will execute once after all methods

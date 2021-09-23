@@ -56,5 +56,4 @@ driver.find_element_by_id("newnessLabel").click() #new stuff
 #click register button
 driver.find_element_by_id("register").click()
 
-driver.implicitly_wait(3)
 driver.close()

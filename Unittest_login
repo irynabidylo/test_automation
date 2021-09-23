@@ -8,6 +8,11 @@ class ItalkiTest(unittest.TestCase):
         cls.driver = webdriver.Chrome(executable_path="C:\Program Files\Drivers_browsers\chromedriver.exe")
         cls.driver.maximize_window()
         cls.driver.implicitly_wait(5)
+        
+    @classmethod
+    def tearDownClass(cls): #will execute once after all methods
+        cls.driver.quit()
+        print("Test completed")
 
     def test_homepage_title_verification(self): 
         self.driver.get("https://www.italki.com")
@@ -21,11 +26,6 @@ class ItalkiTest(unittest.TestCase):
         self.driver.find_element_by_class_name("ant-btn ant-btn-secondary ant-btn-block").click()
         self.assertEqual("Панель управления | italki", self.driver.title, "Titles don't match")
         #"Titles don't match" - message which will be shown if test fails
-
-    @classmethod
-    def tearDownClass(cls): #will execute once after all methods
-        cls.driver.quit()
-        print("Test completed")
 
 if __name__ == '__main__':
     unittest.main()

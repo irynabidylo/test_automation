@@ -4,13 +4,13 @@ import unittest
 class ItalkiTest(unittest.TestCase):
 
     @classmethod
-    def setUpClass(cls): #will execute only once before test method start
+    def setUpClass(cls):
         cls.driver = webdriver.Chrome(executable_path="C:\Program Files\Drivers_browsers\chromedriver.exe")
         cls.driver.maximize_window()
         cls.driver.implicitly_wait(5)
 
     @classmethod
-    def tearDownClass(cls): #will execute once after all methods
+    def tearDownClass(cls): 
         cls.driver.quit()
         print("Test completed")
 

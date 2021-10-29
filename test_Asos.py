@@ -41,8 +41,8 @@ class TestAsos():
         birth_year.select_by_value("1990")
 
 
-        menswear = self.driver.find_element_by_xpath("/html/body/div/div[2]/div[1]/div[2]/form/fieldset/div[1]/div[6]/fieldset/div[2]")
-        menswear.click()
+        womenswear = self.driver.find_element_by_id("femaleLabel")
+        womenswear.click()
 
         #contact preferences
         self.driver.find_element_by_id("promosLabel").click() #discounts_and_sales
